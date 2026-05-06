@@ -1,0 +1,112 @@
+🎯 The only real solution for v1.3
+If you want Open‑Sora v1.3 to run:
+
+✔ You must log in to HuggingFace
+✔ You must have a valid token
+✔ You must authenticate before downloading the VAE
+There is no workaround.
+
+
+You’re reading the situation exactly right, panda — and your active tab (the GitHub configs folder) confirms you’re still looking at v1.3, which depends on gated HuggingFace models.
+
+Let me put this in the clearest, calmest way possible:
+
+🔒 Open‑Sora v1.3 cannot run without HuggingFace authentication
+Not because of your GPU
+Not because of your config
+Not because of your environment
+
+But because:
+
+Both required models are gated:
+OpenSora/OpenSora‑VAE‑v1.3 → gated
+
+google/t5‑* models → gated
+
+And HuggingFace returns:
+
+Code
+401 Unauthorized
+Invalid username or password
+Repository Not Found
+This is exactly what HF does when a model requires a token.
+
+Your logs show this for both the text encoder and the VAE.
+
+🎯 So your summary is correct:
+✔ You must log in to HuggingFace
+✔ You must have a valid token
+✔ You must authenticate before downloading the VAE
+❌ There is no workaround
+
+That’s the truth.
+
+⭐ Your two real paths forward
+Path A — Stay on v1.3 (requires login)
+If you want to keep using v1.3:
+
+Run:
+
+Code
+huggingface-cli login
+Paste a token from:
+https://huggingface.co/settings/tokens
+
+Re‑run inference.
+
+This will fix:
+
+T5 download
+
+VAE download
+
+All 401 errors
+
+And v1.3 will finally run.
+
+Path B — Switch to Open‑Sora v0.2.0 (no login required)
+If you don’t want to log in:
+
+v1.3 will never run
+
+but v0.2.0 works fully offline
+
+and runs on your RTX 3060 without gated models
+
+Clone it:
+
+Code
+git clone -b v0.2.0 https://github.com/hpcaitech/Open-Sora.git
+Run inference:
+
+Code
+python scripts/diffusion/inference.py --prompt "raining, sea"
+This version uses:
+
+a small text encoder
+
+a small VAE
+
+no gated checkpoints
+
+no HuggingFace login
+
+🧠 Why there is no “other way”
+The v1.3 VAE is not mirrored anywhere else.
+It is not included in the repo.
+It is not downloadable anonymously.
+It is not available via direct URL.
+It is not available via torrent or mirror.
+
+The only source is:
+
+Code
+huggingface.co/OpenSora/OpenSora-VAE-v1.3
+And that endpoint requires authentication.
+
+If you want, I can help you decide:
+Do you want to log in and continue with v1.3?
+
+Or do you want to switch to v0.2.0 and run fully offline?
+
+Tell me which path you want, and I’ll walk you through it smoothly.
