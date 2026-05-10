@@ -5,7 +5,6 @@ import imageio
 import numpy as np
 import cv2
 
-
 # ============================================================
 #   LOAD MOCHI PIPELINE (3060 SAFE)
 # ============================================================
@@ -42,13 +41,20 @@ WIDTH = 288
 #   RUN INFERENCE
 # ============================================================
 
-prompt = "A duck wearing sunglasses floating in outer space, neon lighting, surreal, comedic, cartoon‑realistic style., 4k"
+prompt = """
+
+“Continue this clip with the same zoom‑in motion.
+Keep the text exactly the same as the first frame.
+No changes to the letters, no distortion, no stylization.
+Smooth cinematic continuation.”
+
+"""
 
 with torch.autocast("cuda"):
     out = pipe(
         prompt=prompt,
         num_frames=24,
-        guidance_scale=7.5,
+        guidance_scale=8.5,
         height=HEIGHT,
         width=WIDTH,
     )
@@ -112,6 +118,6 @@ final_frames_resized = [
 # ============================================================
 
 os.makedirs("outputs", exist_ok=True)
-imageio.mimwrite("outputs/mochi_output.mp4", final_frames_resized, fps=8, quality=8)
+imageio.mimwrite("outputs/text4.mp4", final_frames_resized, fps=8, quality=8)
 
 print("Saved to outputs/mochi_output.mp4")
