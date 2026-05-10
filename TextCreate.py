@@ -1,12 +1,12 @@
 from PIL import Image, ImageDraw, ImageFont
 
 def generate_text_frame(
-    output_path="outputs/text_frame.png",
+    output_path="outputs/text_frame2.png",
     width=4096,
     height=4096,
     bg_color=(0, 255, 255),  # neon cyan
     text_color=(0, 0, 0),
-    font_path="arial.ttf",  # replace with your bold font
+    font_path="ChangaOne-Regular.ttf",  # replace with your bold font
     font_size=620,
 ):
     lines = ["WHAT", "DID", "I", "JUST", "WATCH"]
