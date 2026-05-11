@@ -212,3 +212,6 @@ exps
 ckpts
 flash-attention
 datasets
+*.mp4
+*.png
+*.ttf
